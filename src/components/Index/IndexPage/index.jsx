@@ -1,9 +1,13 @@
+import { useEffect, useState, createContext} from "react";
+
 import Nav from "../../Base/nav";
 import Header from "../FormHeader";
 import IndexForm from "../IndexForm";
+import { server } from "../../../helpers/fetch";
 
 
 const Index = () => {
+
     return (
             <div className="with-nav radial-bg flex-center">
                 <Nav />

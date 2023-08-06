@@ -1,0 +1,1 @@
+export const server = 'https://brass-northern-biplane.glitch.me/';
