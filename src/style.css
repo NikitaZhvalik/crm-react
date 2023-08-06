@@ -787,12 +787,13 @@ body {
 	color: rgb(86, 127, 192);
 }
 
-body.with-nav {
+.with-nav {
 	padding-top: 60px;
+	height: 100vh;
 }
 
 
-body.with-nav .left-panel {
+.with-nav .left-panel {
 	top: 60px;
 	bottom: 0px;
 	height: auto;
