@@ -21,10 +21,11 @@ const IndexForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const data = {
-            date: new Date(),
+            dateTime: new Date().toLocaleTimeString(),
+            date: new Date().toLocaleDateString(),
             name: studentName,
-            email: studentPhone,
-            phone: studentEmail,
+            email: studentEmail,
+            phone: studentPhone,
             status: "new",
             product: studentProduct
         }

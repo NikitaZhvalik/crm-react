@@ -5,8 +5,8 @@ import Table from "./Table/TablePage";
 const App = () => {
   return (
 		<div>
-			<Index />
-			{/* <Table /> */}
+			{/* <Index /> */}
+			<Table />
 			{/* <Edit /> */}
 		</div>
   );
