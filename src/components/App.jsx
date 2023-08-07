@@ -4,8 +4,6 @@ import Edit from "./Edit/EditPage";
 import Index from "./Index/IndexPage";
 import Table from "./Table/TablePage";
 import Nav from './Base/nav';
-import Application from './Table/Application';
-
 
 const App = () => {
   return (
@@ -16,7 +14,7 @@ const App = () => {
 					<Route path='/' element={<Index />}></Route>
 					<Route path='/table' element={<Table />}></Route>
 					<Route path='/edit' element={<Edit />}></Route>
-					<Route path="/edit/:id" element={<Application />}/>
+					<Route path="/edit/:id" element={<Edit />}/>
 				</Routes>
 			</div>
 		</Router>

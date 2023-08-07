@@ -1,8 +1,67 @@
-const EditForm = () => {
-    return (
-                <div className="col">
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { server } from "../../../helpers/fetch";
 
-                    <form id="form">
+const EditForm = () => {
+
+        const [application, setApplication] = useState(null)
+        const {id} = useParams();
+        const abortCont = new AbortController();
+
+
+        const [name, setName] = useState('')
+
+        useEffect(() => {
+            fetch(server + `applications/${id}`, {signal: abortCont.signal})
+            .then((response) => {
+                if (response.ok  !== true) {
+                    throw Error ('Не получается загрузить данные с сервера(')
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setApplication(data)
+            })
+            .catch((error) => {
+                if (error.name === "AbortError") {
+                    console.warn('Запрос был остановлен')
+                }
+                else {
+                    console.warn(error.message)
+                }
+            })
+            return () => {
+                abortCont.abort()
+            }
+        }, [])
+
+        const changeApplication = (e) => {
+            e.preventDefault()
+            const data = {
+                ...application,
+                name: name,
+                // email: application.email,
+                // phone: application.phone,
+                // status: application.status,
+                // product: application.product
+            }
+    
+            fetch(server + `applications/${id}`, {
+                method: "PUT",
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify(data)
+            })
+            .catch((error) => {
+                alert('При сохранении изменений произошел сбой')
+                console.warn(error);
+            })
+            
+        }
+
+    return ( application &&
+                (<div className="col">
+
+                    <form onSubmit={changeApplication} id="form">
                         <div className="card mb-4">
                             <div className="card-header">Данные о заявке</div>
                             <div className="card-body">
@@ -10,7 +69,7 @@ const EditForm = () => {
                                     <div className="col-md-2">
                                         <strong>ID:</strong>
                                     </div>
-                                    <div className="col">Заявка №<span id="number">1</span></div>
+                                    <div className="col">Заявка №<span id="number">{application.id}</span></div>
                                     <input name="id" type="hidden" id="id" />
                                 </div>
 
@@ -18,7 +77,7 @@ const EditForm = () => {
                                     <div className="col-md-2">
                                         <strong>Дата создания:</strong>
                                     </div>
-                                    <div className="col" id="date">2020-04-20 13:52:13</div>
+                                    <div className="col" id="date">{application.date} {application.dateTime}</div>
                                 </div>
 
                                 <div className="row mb-3">
@@ -26,7 +85,7 @@ const EditForm = () => {
                                         <strong>Продукт:</strong>
                                     </div>
                                     <div className="col">
-                                        <select id="product" name="product" className="custom-select" >
+                                        <select value={application.product} onChange={(e) => {}} id="product" name="product" className="custom-select" >
                                             <option value="course-html">Курс по верстке</option>
                                             <option value="course-js">
                                                 Курс по JavaScript
@@ -48,7 +107,8 @@ const EditForm = () => {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            value="Петр Сергеевич"
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
                                             id="name"
                                             name="name"
                                         />
@@ -63,7 +123,7 @@ const EditForm = () => {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            value="info@inbox.ru"
+                                            defaultValue={application.email}
                                             id="email"
                                             name="email"
                                             />
@@ -78,7 +138,7 @@ const EditForm = () => {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            value="+7 (903) 555-77-55"
+                                            defaultValue={application.phone}
                                             id="phone"
                                             name="phone"
                                             />
@@ -91,7 +151,7 @@ const EditForm = () => {
                                     </div>
                                     <div className="col">
                                         <select className="custom-select" id="status" name="status">
-                                            <option selected="">Выберите...</option>
+                                            <option defaultValue="">Выберите...</option>
                                             <option value="new">Новая</option>
                                             <option value="inwork">В работе</option>
                                             <option value="complete">Завершена</option>
@@ -111,7 +171,7 @@ const EditForm = () => {
                         </div>
                     </form>
 
-                </div>
+                </div>)
     );
 }
  

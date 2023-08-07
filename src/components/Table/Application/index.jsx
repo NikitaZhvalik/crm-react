@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const Application = ({application}) => {
     const {phone, name, product, email, id, status, date} = application;
-
+    
     const statusObj = {
         new: "Новая",
         inwork: "В работе",
@@ -34,7 +36,9 @@ const Application = ({application}) => {
                     <div className={cssStatus}>{statusObj[status]}</div>
                 </td>
                 <td>
-                    <a href="edit.html">Редактировать</a>
+                    <Link to={`/edit/${id}`}>
+                        Редактировать
+                    </Link>
                 </td>
             </tr>
     );
