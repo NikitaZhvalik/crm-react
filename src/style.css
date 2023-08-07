@@ -800,3 +800,8 @@ body {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+
+.flex-end {
+	display: flex;
+	justify-content: flex-end
+}

@@ -7,17 +7,30 @@ import TableHeader from "../TableHeader";
 
 const TableMain = () => {
     const [applications, setApplications] = useState(null)
+    const abortCont = new AbortController();
 
     useEffect(() => {
-        fetch(server + `applications/`, {
-            method: 'GET',
-        })
+        fetch(server + `applications/`, {signal: abortCont.signal})
         .then((response) => {
+            if (response.ok  !== true) {
+                throw Error ('Не получается загрузить данные с сервера(')
+            }
             return response.json();
         })
         .then((data) => {
             setApplications(data)
         })
+        .catch((error) => {
+            if (error.name === "AbortError") {
+                console.warn('Запрос был остановлен')
+            }
+            else {
+                console.warn(error.message)
+            }
+        })
+        return () => {
+            abortCont.abort()
+        }
     }, [])
 
     const renderApplications = () => {

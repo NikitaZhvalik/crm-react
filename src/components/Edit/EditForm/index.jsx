@@ -102,7 +102,10 @@ const EditForm = () => {
                         </div>
                         
                         <div className="row justify-content-between">
-                            <div className="col text-right">
+                            <div className="col flex-end">
+                                <button type="submit" className="btn btn-primary">Удалить заявку</button>
+                            </div>
+                            <div className="text-right pr-15">
                                 <button type="submit" className="btn btn-primary">Сохранить изменения</button>
                             </div>
                         </div>
