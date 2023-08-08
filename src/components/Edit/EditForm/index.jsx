@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import { server } from "../../../helpers/fetch";
 
 const EditForm = () => {
-
         const [application, setApplication] = useState(null)
-        const {id} = useParams();
-        const abortCont = new AbortController();
 
+        const {id} = useParams()
+        const abortCont = new AbortController()
 
-        const [name, setName] = useState('')
+        const [product, setProduct] = useState(``)
+        const [name, setName] = useState(``)
+        const [email, setEmail] = useState(``)
+        const [phone, setPhone] = useState(``)
+        const [status, setStatus] = useState(``)
 
         useEffect(() => {
             fetch(server + `applications/${id}`, {signal: abortCont.signal})
@@ -21,6 +24,11 @@ const EditForm = () => {
             })
             .then((data) => {
                 setApplication(data)
+                setProduct(data.product)
+                setName(data.name)
+                setEmail(data.email)
+                setPhone(data.phone)
+                setStatus(data.status)
             })
             .catch((error) => {
                 if (error.name === "AbortError") {
@@ -30,6 +38,7 @@ const EditForm = () => {
                     console.warn(error.message)
                 }
             })
+
             return () => {
                 abortCont.abort()
             }
@@ -37,14 +46,7 @@ const EditForm = () => {
 
         const changeApplication = (e) => {
             e.preventDefault()
-            const data = {
-                ...application,
-                name: name,
-                // email: application.email,
-                // phone: application.phone,
-                // status: application.status,
-                // product: application.product
-            }
+            const data = {...application, name, email, phone, status, product}
     
             fetch(server + `applications/${id}`, {
                 method: "PUT",
@@ -85,7 +87,7 @@ const EditForm = () => {
                                         <strong>Продукт:</strong>
                                     </div>
                                     <div className="col">
-                                        <select value={application.product} onChange={(e) => {}} id="product" name="product" className="custom-select" >
+                                        <select value={product} onChange={(e) => setProduct(e.target.value)} id="product" name="product" className="custom-select" >
                                             <option value="course-html">Курс по верстке</option>
                                             <option value="course-js">
                                                 Курс по JavaScript
@@ -123,7 +125,8 @@ const EditForm = () => {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            defaultValue={application.email}
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                             id="email"
                                             name="email"
                                             />
@@ -138,7 +141,8 @@ const EditForm = () => {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            defaultValue={application.phone}
+                                            value={phone}
+                                            onChange={(e) => setPhone(e.target.value)}
                                             id="phone"
                                             name="phone"
                                             />
@@ -150,8 +154,7 @@ const EditForm = () => {
                                         <strong>Статус заявки:</strong>
                                     </div>
                                     <div className="col">
-                                        <select className="custom-select" id="status" name="status">
-                                            <option defaultValue="">Выберите...</option>
+                                        <select value={status} onChange={(e) => setStatus(e.target.value)} className="custom-select" id="status" name="status">
                                             <option value="new">Новая</option>
                                             <option value="inwork">В работе</option>
                                             <option value="complete">Завершена</option>
