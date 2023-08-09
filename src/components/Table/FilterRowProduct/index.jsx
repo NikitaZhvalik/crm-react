@@ -1,18 +1,14 @@
-import { useState } from "react";
+import { btnsSelectProduct } from "../../../helpers/const";
 
-const FilterRowProduct = () => {
-
-    const [filter, setFilter] = useState('all')
-
+const FilterRowProduct = ({filter, setFilter}) => {
     return (
             <div className="col">
-                <select value={filter} onChange={(e) => setFilter(e.target.value)} className="custom-select" id="productSelect">
-                    <option value="all">Все продукты</option>
-                    <option value="course-html">Курс по верстке</option>
-                    <option value="course-js">Курс по JavaScript</option>
-                    <option value="course-vue">Курс по VUE JS</option>
-                    <option value="course-php">Курс по PHP</option>
-                    <option value="course-wordpress">Курс по WordPress</option>
+                <select value={filter} onChange={(e) => setFilter({...filter, product: e.target.value})} className="custom-select" id="productSelect">
+                    {
+                        btnsSelectProduct.map((btn) => {
+                            return <option value={btn.product} key={btn.name}>{btn.name}</option>
+                        })
+                    }
                 </select>
             </div>
     );

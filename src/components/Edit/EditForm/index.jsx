@@ -182,7 +182,7 @@ const EditForm = () => {
                                         <strong>Статус заявки:</strong>
                                     </div>
                                     <div className="col">
-                                        <select value={status} onChange={(e) => setStatus(e.target.value)} className="custom-select" id="status" name="status">
+                                        <select value={status} onChange={(e) => {setStatus(e.target.value)}} className="custom-select" id="status" name="status">
                                             <option value="new">Новая</option>
                                             <option value="inwork">В работе</option>
                                             <option value="complete">Завершена</option>

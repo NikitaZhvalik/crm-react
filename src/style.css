@@ -4,6 +4,9 @@
 html {
 	height: 100%;
 }
+li {
+	list-style: none;
+}
 body {
 	height: 100%;
 	margin: 0;
@@ -791,7 +794,6 @@ body {
 	padding-top: 60px;
 	height: 100vh;
 }
-
 
 .with-nav .left-panel {
 	top: 60px;

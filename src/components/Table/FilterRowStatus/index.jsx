@@ -1,28 +1,16 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { btnsSelectStatus } from "../../../helpers/const";
 
-const FilterRowStatus = ({applications}) => {
-    const [status, setStatus] = useState('all')
-    
-    const changeStatus = (newStatus) => {
-        setStatus(newStatus)
-        const newApplication = applications.filter((application) => {
-            if (newStatus === 'all') {
-                return application
-            } else {
-                return application.status === newStatus
-            }
-        })
-        console.log("🚀 ~ file: index.jsx:16 ~ newApplication ~ newApplication:", newApplication)
-    }
-
+const FilterRowStatus = ({filter, setFilter}) => {
     return (
         <div className="col">
             <div id="topStatusBar" className="btn-group" role="group" aria-label="...">
-                <Link href='#' onClick={() => changeStatus('all')} className="btn btn-light" data-value="all">Все</Link>
-                <Link href='#' onClick={() => changeStatus('new')} className="btn btn-light" data-value="new">Новые</Link>
-                <Link href='#' onClick={() => changeStatus('inwork')} className="btn btn-light" data-value="inwork">В работе</Link>
-                <Link href='#' onClick={() => changeStatus('complete')} className="btn btn-light" data-value="complete">Завершенные</Link>
+                {btnsSelectStatus.map((btn) => {
+						return <li key={btn.name}>
+									<Link onClick={() => setFilter({...filter, status: btn.status})} data-value={btn.status} data-role="left-status" href="#" className='btn btn-light'>{btn.name}
+									</Link>
+								</li>
+					})}
             </div>
         </div>
     );
