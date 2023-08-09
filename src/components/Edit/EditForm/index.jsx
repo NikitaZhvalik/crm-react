@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { server } from "../../../helpers/fetch";
 
 const EditForm = () => {
@@ -7,6 +8,7 @@ const EditForm = () => {
 
         const {id} = useParams()
         const abortCont = new AbortController()
+        const navigate = useNavigate();
 
         const [product, setProduct] = useState(``)
         const [name, setName] = useState(``)
@@ -53,14 +55,31 @@ const EditForm = () => {
                 headers: {'Content-Type' : 'application/json'},
                 body: JSON.stringify(data)
             })
+            .then(() => {
+                navigate('/table')
+            })
             .catch((error) => {
                 alert('При сохранении изменений произошел сбой')
                 console.warn(error);
             })
-            
         }
 
-    return ( application &&
+        const delApplication = (e) => {
+            fetch(server + `applications/${id}`, {
+                method: "DELETE",
+            })
+            .then(() => {
+                navigate('/table')
+            })
+            .catch((error) => {
+                alert('При удалении изменений произошел сбой')
+                console.warn(error);
+            })
+        }
+
+                                
+    return (
+                application &&
                 (<div className="col">
 
                     <form onSubmit={changeApplication} id="form">
@@ -99,7 +118,7 @@ const EditForm = () => {
                                             </option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>                                
 
                                 <div className="row mb-3">
                                     <div className="col-md-2">
@@ -166,7 +185,7 @@ const EditForm = () => {
                         
                         <div className="row justify-content-between">
                             <div className="col flex-end">
-                                <button type="submit" className="btn btn-primary">Удалить заявку</button>
+                                <button type="button" onClick={delApplication} className="btn btn-primary">Удалить заявку</button>
                             </div>
                             <div className="text-right pr-15">
                                 <button type="submit" className="btn btn-primary">Сохранить изменения</button>

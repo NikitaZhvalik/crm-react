@@ -7,6 +7,7 @@ import TableHeader from "../TableHeader";
 
 const TableMain = () => {
     const [applications, setApplications] = useState(null)
+    const [isLoading, setLoading] = useState(true)
     const abortCont = new AbortController();
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const TableMain = () => {
         })
         .then((data) => {
             setApplications(data)
+            setLoading(false)
         })
         .catch((error) => {
             if (error.name === "AbortError") {
@@ -57,19 +59,9 @@ const TableMain = () => {
                         <TableHeader />
                         <tbody id="tbody">
                             {applications && renderApplications()}
-                            {/* <tr>
-
-                                    <div className="badge badge-pill badge-danger">Новый</div>
-
-                                    <div className="badge badge-pill badge-warning">В работе</div>
-
-                                    <div className="badge badge-pill badge-success">Завершенный</div>
-
-                                    <a href="edit.html">Редактировать</a>
-
-                            </tr> */}
                         </tbody>
                     </table>
+                    {isLoading && <h3>loading...</h3>}
                 </div>
             </div>
     );

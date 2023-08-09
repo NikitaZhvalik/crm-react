@@ -6,7 +6,7 @@ import Table from "./Table/TablePage";
 import Nav from './Base/nav';
 
 const App = () => {
-  return (
+  	return (
 		<Router>
 			<Nav />
 			<div className='app'>
@@ -18,7 +18,7 @@ const App = () => {
 				</Routes>
 			</div>
 		</Router>
-  );
+  	);
 };
 
 export default App;
