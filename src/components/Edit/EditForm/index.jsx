@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { server } from "../../../helpers/fetch";
+import Loader from "../../Loader/Loader";
 
 const EditForm = () => {
         const [application, setApplication] = useState(null)
@@ -85,7 +86,7 @@ const EditForm = () => {
                                 
     return (
         <div className="col">
-            {isLoading && <h3>loading...</h3>}
+            {isLoading && <Loader />}
             {
                 application &&
                 (<div>

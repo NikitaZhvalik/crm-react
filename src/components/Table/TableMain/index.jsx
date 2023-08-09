@@ -4,6 +4,7 @@ import Application from "../Application";
 import FilterRowStatus from "../FilterRowStatus";
 import FilterRowProduct from "../FilterRowProduct";
 import TableHeader from "../TableHeader";
+import Loader from "../../Loader/Loader";
 
 const TableMain = () => {
     const [applications, setApplications] = useState(null)
@@ -61,7 +62,7 @@ const TableMain = () => {
                             {applications && renderApplications()}
                         </tbody>
                     </table>
-                    {isLoading && <h3>loading...</h3>}
+                    {isLoading && <Loader />}
                 </div>
             </div>
     );
