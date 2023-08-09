@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const EditHeader = () => {
     return (
         <div className="row justify-content-between align-items-center">
@@ -5,7 +7,9 @@ const EditHeader = () => {
                 <div className="admin-heading-1">Работа с заявкой</div>
             </div>
             <div className="col text-right">
-                <a href="/table" className="btn btn-link">Вернуться назад</a>
+                <Link to="/table">
+                    <h4 className="btn btn-link">Вернуться назад</h4>
+                </Link>
             </div>
         </div>
     );

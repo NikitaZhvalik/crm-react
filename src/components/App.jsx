@@ -4,6 +4,7 @@ import Edit from "./Edit/EditPage";
 import Index from "./Index/IndexPage";
 import Table from "./Table/TablePage";
 import Nav from './Base/nav';
+import NotFound from './NotFound/NotFound';
 
 const App = () => {
   	return (
@@ -15,6 +16,7 @@ const App = () => {
 					<Route path='/table' element={<Table />}></Route>
 					<Route path='/edit' element={<Edit />}></Route>
 					<Route path="/edit/:id" element={<Edit />}/>
+					<Route path="*" element={<NotFound />}/>
 				</Routes>
 			</div>
 		</Router>
