@@ -16,6 +16,8 @@ const EditForm = () => {
         const [phone, setPhone] = useState(``)
         const [status, setStatus] = useState(``)
 
+        const [isLoading, setLoading] = useState(true)
+
         useEffect(() => {
             fetch(server + `applications/${id}`, {signal: abortCont.signal})
             .then((response) => {
@@ -31,6 +33,9 @@ const EditForm = () => {
                 setEmail(data.email)
                 setPhone(data.phone)
                 setStatus(data.status)
+            })
+            .then(() => {
+                setLoading(false)
             })
             .catch((error) => {
                 if (error.name === "AbortError") {
@@ -79,8 +84,11 @@ const EditForm = () => {
 
                                 
     return (
+        <div className="col">
+            {isLoading && <h3>loading...</h3>}
+            {
                 application &&
-                (<div className="col">
+                (<div>
 
                     <form onSubmit={changeApplication} id="form">
                         <div className="card mb-4">
@@ -194,6 +202,8 @@ const EditForm = () => {
                     </form>
 
                 </div>)
+            }
+        </div>
     );
 }
  

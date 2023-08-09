@@ -5,7 +5,7 @@ const EditHeader = () => {
                 <div className="admin-heading-1">Работа с заявкой</div>
             </div>
             <div className="col text-right">
-                <a href="index.html" className="btn btn-link">Вернуться назад</a>
+                <a href="/table" className="btn btn-link">Вернуться назад</a>
             </div>
         </div>
     );
