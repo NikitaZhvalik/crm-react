@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const FilterRowStatus = ({applications}) => {
     const [status, setStatus] = useState('all')
@@ -18,10 +19,10 @@ const FilterRowStatus = ({applications}) => {
     return (
         <div className="col">
             <div id="topStatusBar" className="btn-group" role="group" aria-label="...">
-                <a href='#' onClick={() => changeStatus('all')} className="btn btn-light" data-value="all">Все</a>
-                <a href='#' onClick={() => changeStatus('new')} className="btn btn-light" data-value="new">Новые</a>
-                <a href='#' onClick={() => changeStatus('inwork')} className="btn btn-light" data-value="inwork">В работе</a>
-                <a href='#' onClick={() => changeStatus('complete')} className="btn btn-light" data-value="complete">Завершенные</a>
+                <Link href='#' onClick={() => changeStatus('all')} className="btn btn-light" data-value="all">Все</Link>
+                <Link href='#' onClick={() => changeStatus('new')} className="btn btn-light" data-value="new">Новые</Link>
+                <Link href='#' onClick={() => changeStatus('inwork')} className="btn btn-light" data-value="inwork">В работе</Link>
+                <Link href='#' onClick={() => changeStatus('complete')} className="btn btn-light" data-value="complete">Завершенные</Link>
             </div>
         </div>
     );

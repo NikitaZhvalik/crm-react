@@ -2,21 +2,22 @@ import { useState } from "react";
 
 import { server } from "../../../helpers/fetch";
 
+import { randomApplication } from "../../../helpers/testData";
+
 const IndexForm = () => {
 
-    const nameMassive = ['Никита Жвалик', 'Вася Пупкин', 'Иван Иванов', 'Елена Полено', 'Игорь Кудрявцев'];
-    const phoneMassive = ['+891324312140', '+427811412323', '+1348947432921', '+8295321345', '+7654532214'];
-    const emailMassive = ['Vasya@mail.ru', 'Ivan@mail.ru', 'Nikita@mail.ru', 'Igor@mail.ru', 'Elena@mail.ru'];
-    const productMassive = ['course-wordpress', 'course-js', 'course-html', 'course-php', 'course-vue']
-    
-    const randomForm = (array) => {
-        return array[Math.floor(Math.random() * array.length)]
-    }
+    const [studentName, setStudentName] = useState(randomApplication().name)
+    const [studentPhone, setStudentPhone] = useState(randomApplication().phone)
+    const [studentEmail, setStudentEmail] = useState(randomApplication().email)
+    const [studentProduct, setStudentProduct] = useState(randomApplication().product)
 
-    const [studentName, setStudentName] = useState(randomForm(nameMassive))
-    const [studentPhone, setStudentPhone] = useState(randomForm(phoneMassive))
-    const [studentEmail, setStudentEmail] = useState(randomForm(emailMassive))
-    const [studentProduct, setStudentProduct] = useState(randomForm(productMassive))
+    const renderTestData = () => {
+        const randomData = randomApplication()
+        setStudentName(randomData.name)
+        setStudentPhone(randomData.phone)
+        setStudentEmail(randomData.email)
+        setStudentProduct(randomData.product)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -36,10 +37,7 @@ const IndexForm = () => {
             body: JSON.stringify(data)
         })
         .then(() => {
-            setStudentName(randomForm(nameMassive))
-            setStudentPhone(randomForm(phoneMassive))
-            setStudentEmail(randomForm(emailMassive))
-            setStudentProduct(randomForm(productMassive))
+            renderTestData()
         })
     }
 

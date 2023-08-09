@@ -10,9 +10,6 @@ const Nav = () => {
                 <Link to="/table">
                     <h4 className="btn btn-link">Таблица с заявками</h4>
                 </Link>
-                <Link to="/edit">
-                    <h4 className="btn btn-link">Редактирование заявки</h4>
-                </Link>
             </div>
         </nav>
     );
