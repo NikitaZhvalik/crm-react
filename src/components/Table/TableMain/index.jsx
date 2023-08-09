@@ -51,8 +51,8 @@ const TableMain = () => {
                     <div className="admin-heading-1">Все заявки</div>
                     <form action="">
                         <div className="row mb-3 justify-content-start">
-                            <FilterRowStatus />
-                            <FilterRowProduct />
+                            <FilterRowStatus applications={applications} />
+                            <FilterRowProduct applications={applications} />
                         </div>
                     </form>
 
