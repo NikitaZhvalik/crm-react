@@ -12,6 +12,12 @@ const RenderEditForm = ({application, delApplication, id}) => {
     const [phone, setPhone] = useState(application.phone)
     const [status, setStatus] = useState(application.status)
 
+    const applicationFields = [
+        {title: 'Имя:', name: name, onChange: setName},
+        {title: 'Email:', name: email, onChange: setEmail},
+        {title: 'Телефон:', name: phone, onChange: setPhone},
+    ]
+
     const changeApplication = (e) => {
         e.preventDefault()
         const data = {...application, name, email, phone, status, product}
@@ -56,58 +62,28 @@ const RenderEditForm = ({application, delApplication, id}) => {
                         </div>
                         <div className="col">
                             <select value={product} onChange={(e) => setProduct(e.target.value)} id="product" name="product" className="custom-select" >
-                                {choiceProduct.slice(1).map((product) => <option value={product.product}>{product.name}</option>)}
+                                {choiceProduct.slice(1).map((product) => <option key={product.name} value={product.product}>{product.name}</option>)}
                             </select>
                         </div>
-                    </div>                                
+                    </div>         
 
-                    <div className="row mb-3">
-                        <div className="col-md-2">
-                            <strong>Имя:</strong>
-                        </div>
-                        <div className="col">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                id="name"
-                                name="name"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="row mb-3">
-                        <div className="col-md-2">
-                            <strong>Email:</strong>
-                        </div>
-                        <div className="col">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                id="email"
-                                name="email"
-                                />
-                        </div>
-                    </div>
-
-                    <div className="row mb-3">
-                        <div className="col-md-2">
-                            <strong>Телефон:</strong>
-                        </div>
-                        <div className="col">
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                id="phone"
-                                name="phone"
-                                />
-                        </div>
-                    </div>
+                    {applicationFields.map((applicationField => {
+                        return <div className="row mb-3" key={applicationField.title}>
+                                    <div className="col-md-2">
+                                        <strong>{applicationField.title}</strong>
+                                    </div>
+                                    <div className="col">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={applicationField.name}
+                                            onChange={(e) => {applicationField.onChange(e.target.value)}}
+                                            id={applicationField.name}
+                                            name={applicationField.name}
+                                        />
+                                    </div>
+                                </div>
+                    }))}
 
                     <div className="row mb-3">
                         <div className="col-md-2">
