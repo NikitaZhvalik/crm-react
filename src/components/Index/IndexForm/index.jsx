@@ -54,11 +54,11 @@ const IndexForm = () => {
                 <div className="form-group">
                     <input value={studentEmail} onChange={(e) => setStudentEmail(e.target.value)} id="email" type="email" name="email" autoComplete="on" className="form-control" placeholder="Email" required />
                 </div>
-                
+
                 <div className="form-group">
                     <label htmlFor="exampleFormControlSelect1">Продукт:</label>
                     <select value={studentProduct} onChange={(e) => setStudentProduct(e.target.value)} id="product" name="product" className="form-control">
-                        {choiceProduct.slice(1).map((product) => <option value={product.product}>{product.name}</option>)}
+                        {choiceProduct.slice(1).map((product) => <option key={product.name} value={product.product}>{product.name}</option>)}
                     </select>
                 </div>
                 <div className="form-group">
