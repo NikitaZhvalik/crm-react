@@ -10,7 +10,7 @@ const FilterRowStatus = ({filter, setFilter}) => {
 									<Link onClick={() => setFilter({...filter, status: btn.status})} data-value={btn.status} data-role="left-status" href="#" className='btn btn-light'>{btn.name}
 									</Link>
 								</li>
-					})}
+				})}
             </div>
         </div>
     );
