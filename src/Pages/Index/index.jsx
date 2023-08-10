@@ -1,5 +1,5 @@
-import Header from "../FormHeader";
-import IndexForm from "../IndexForm";
+import Header from "../../components/Index/FormHeader";
+import IndexForm from "../../components/Index/IndexForm"
 
 const Index = () => {
 

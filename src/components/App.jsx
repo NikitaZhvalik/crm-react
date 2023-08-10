@@ -1,10 +1,10 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Edit from "./Edit/EditPage";
-import Index from "./Index/IndexPage";
-import Table from "./Table/TablePage";
+import Edit from "../Pages/Edit";
+import Index from '../Pages/Index';
+import Table from "../Pages/Table";
 import Nav from './Base/nav';
-import NotFound from './NotFound/NotFound';
+import NotFound from '../Pages/NotFound/NotFound';
 
 const App = () => {
   	return (

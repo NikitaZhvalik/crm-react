@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { server } from "../../../helpers/fetch";
-import Loader from "../../Loader/Loader";
+import Loader from "../../../UI/Loader/Loader";
 
 const EditForm = () => {
         const [application, setApplication] = useState(null)

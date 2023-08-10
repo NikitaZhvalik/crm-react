@@ -1,4 +1,4 @@
-import TableMain from "../TableMain";
+import TableMain from "../../components/Table/TableMain";
 
 const Table = () => {
     return (

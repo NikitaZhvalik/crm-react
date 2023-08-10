@@ -5,7 +5,7 @@ import FilterRowStatus from "../FilterRowStatus";
 import FilterRowProduct from "../FilterRowProduct";
 import TableHeader from "../TableHeader";
 import TableLeftPanel from "../TableLeftPanel";
-import Loader from "../../Loader/Loader";
+import Loader from "../../../UI/Loader/Loader";
 
 const TableMain = () => {
     const [applications, setApplications] = useState(null)

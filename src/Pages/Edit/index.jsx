@@ -1,5 +1,6 @@
-import EditForm from "../EditForm";
-import EditHeader from "../EditHeader";
+import EditForm from "./../../components/Edit/EditForm";
+import EditHeader from "./../../components/Edit/EditHeader";
+
 
 const Edit = () => {
     return (
