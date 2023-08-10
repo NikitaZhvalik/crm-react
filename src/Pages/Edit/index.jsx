@@ -1,7 +1,6 @@
 import EditForm from "./../../components/Edit/EditForm";
 import EditHeader from "./../../components/Edit/EditHeader";
 
-
 const Edit = () => {
     return (
         <div className="with-nav">

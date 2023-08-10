@@ -1,27 +1,9 @@
 import { Link } from "react-router-dom";
+import renames from "../../../helpers/renames";
 
 const Application = ({application}) => {
     const {phone, name, product, email, id, status, date} = application;
-    
-    const statusObj = {
-        new: "Новая",
-        inwork: "В работе",
-        complete: "Завершенная",
-    }
-
-    const statusClassObj = {
-        new: "badge-danger",
-        inwork: "badge-warning",      
-        complete: "badge-success",
-    }
-
-    const productObj = {
-        'course-html': "Курс по верстке",
-        'course-js': "Курс по JavaScript",
-        'course-vue': "Курс по VUE JS",
-        'course-php': "Курс по PHP",
-        'course-wordpress': "Курс по WordPress",
-    }
+    const {statusObj, statusClassObj, productObj} = renames;
 
     const cssStatus = `badge badge-pill ${statusClassObj[status]}`;
     return (
