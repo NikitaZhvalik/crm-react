@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import avatar from './../../../img/avatars/avatar-128.jpg'
+import avatar from '../../../img/avatar-128.jpg'
 import { btnsSelectStatus } from '../../../helpers/const';
 
 const TableLeftPanel = ({filter, setFilter, allApplications}) => {
