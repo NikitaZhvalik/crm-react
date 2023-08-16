@@ -25,9 +25,11 @@ const EditForm = () => {
     }
                                 
     return (
-        <div className="col">
+        <div className="mw">
             {isLoading && <Loader />}
-            {application && <RenderEditForm application={application} id={id} delApplication={delApplication}/>}
+            <div >
+                {application && <RenderEditForm application={application} id={id} delApplication={delApplication}/>}
+            </div>
         </div>
     );
 }

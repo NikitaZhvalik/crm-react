@@ -807,3 +807,8 @@ body {
 	display: flex;
 	justify-content: flex-end
 }
+
+.mw {
+	padding: 0 20px;
+	min-width: 100%;
+}

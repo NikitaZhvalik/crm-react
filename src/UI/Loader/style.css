@@ -3,7 +3,13 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 70vh;
+	min-height: 100vh;
+	min-width: 100vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 6;
+	background-color: #fff;
 }
 
 .loader {
